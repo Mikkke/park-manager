@@ -109,53 +109,6 @@ router.delete(
     }
   }
 );
-
-// Si dans la pratique l'utilisateur choisit lui même sa place, alors utiliser cet endpoint au lieu du suivant...
-// router.post('/:id/reservation', passport.authenticate('jwt'), async (req, res) => {
-//   const { id } = req.params
-//   const { reservation } = req.body
-
-//   if (reservation !== 'true' && reservation !== 'false') {
-//     errorHandler({ message: 'No reservation value.' }, res)
-
-//     return
-//   }
-
-//   const user = await getUser(req)
-
-//   if (user.role !== 'public') {
-//     errorHandler({ message: 'Only public role is allowed.' }, res)
-
-//     return
-//   }
-
-//   const isAvailable = await spotIsAvailable(id)
-
-//   if (!isAvailable) {
-//     errorHandler({ message: 'Spot is not available.' }, res)
-
-//     return
-//   }
-
-//   try {
-//     let spotId
-
-//     if (reservation === 'true') {
-//       spotId = id
-//     } else {
-//       spotId = null
-//     }
-
-//     await knex('users').where({ id: req.user.id }).update({
-//       spot_id: spotId
-//     })
-
-//     res.sendStatus(200)
-//   } catch (err) {
-//     errorHandler(err, res)
-//   }
-// })
-
 router.post(
   "/:id/reservation",
   passport.authenticate("jwt"),
